@@ -1,0 +1,200 @@
+﻿<Window x:Class="PasswordGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PasswordGenerator"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        FontSize="16"
+        ResizeMode="NoResize"
+        Height="450"
+        Width="640">
+
+
+    <Grid
+        Background="#FF252525">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid
+            Grid.Row="0"
+            MouseDown="StackPanel_MouseDown">
+            <StackPanel
+                Orientation="Horizontal"            
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center">
+                <Button
+                    Width="30"
+                    Height="30"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Padding="0"
+                    Foreground="White"
+                    Click="MinimizeApp_Click">
+                    <materialDesign:PackIcon
+                        Width="30"
+                        Height="30"
+                        Foreground="#89A306"
+                        Kind="WindowMinimize">
+                    </materialDesign:PackIcon>
+                </Button>
+                <Button
+                    Width="30"
+                    Height="30"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Padding="0"
+                    Foreground="White"
+                    Click="CloseApp_Click">
+                    <materialDesign:PackIcon
+                        Width="30"
+                        Height="30"
+                        Foreground="#89A306"
+                        Kind="Close">
+                    </materialDesign:PackIcon>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid
+            Grid.Row="1">            
+            <StackPanel
+                Orientation="Vertical">
+                <Label
+                FontWeight="Bold"
+                Foreground="White"
+                HorizontalContentAlignment="Center"
+                Content="PASSWORD GENERATOR">
+                </Label>
+                <StackPanel
+                    Orientation="Horizontal">
+                    <TextBox
+                        x:Name="GeneratedPassword"
+                        Padding="10 5 0 0"
+                        Foreground="White"
+                        FontSize="16"
+                        Width="300"
+                        Height="40"
+                        Margin="20 10 0 10"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource MaterialDesignTextBox}"
+                        materialDesign:TextFieldAssist.UnderlineBrush="#89A306"
+                        Background="#666666">
+                    </TextBox>
+                    <Button
+                        Width="110"
+                        Height="40"
+                        Margin="10 10 0 10"
+                        Background="#FF848181"
+                        BorderThickness="3"
+                        BorderBrush="#FF5D5B5B"
+                        Foreground="white"
+                        Click="GeneratePassword_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Kind="Mace"
+                                Width="30"
+                                Height="30"
+                                VerticalAlignment="Center" 
+                                Margin="0"/>
+                            <Label
+                                Content="Create"
+                                FontSize="12"
+                                Foreground="White"
+                                VerticalAlignment="Center"
+                                Margin="0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button
+                        Width="170"
+                        Height="40"
+                        Margin="10 0 0 0"
+                        Background="#FF848181"
+                        BorderThickness="3"
+                        FontSize="12"
+                        BorderBrush="#FF5D5B5B"
+                        Foreground="white"
+                        Click="CopyToClipboard_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Kind="Clipboard"
+                                Width="30"
+                                Height="30"
+                                VerticalAlignment="Center" 
+                                Margin="0"/>
+                            <Label
+                                Content="Copy to clipboard"
+                                FontSize="12"
+                                Foreground="White"
+                                VerticalAlignment="Center"
+                                Margin="0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>                
+                <StackPanel
+                    Orientation="Horizontal"
+                    Margin="20 20 20 10">
+                    <Slider
+                        Name="PasswordLengthSlider"
+                        Maximum="20"
+                        Minimum="5"
+                        TickFrequency="1"
+                        TickPlacement="BottomRight"
+                        IsSnapToTickEnabled="True"
+                        Width="600">
+                    </Slider>
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Margin="20 0 20 0">
+                    <Label
+                        Margin="0 0 0 0"
+                        Foreground="White"
+                        FontSize="16"
+                        Height="50"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Password length:">
+                    </Label>
+                    <Label
+                        Content="{Binding ElementName=PasswordLengthSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                        Foreground="White"
+                        FontSize="16"
+                        Height="50"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center">
+                    </Label>
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Margin="20 0 20 10">
+                    <CheckBox
+                        Margin="0 0 0 0"
+                        Foreground="White"
+                        FontSize="16"
+                        Height="50"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center">
+                    </CheckBox>
+                    <Label
+                        Content="Include Uppercase characters"
+                        Foreground="White"
+                        FontSize="16"
+                        Height="50"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center">
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+</Window>
