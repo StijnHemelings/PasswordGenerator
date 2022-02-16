@@ -6,14 +6,12 @@
         xmlns:local="clr-namespace:PasswordGenerator"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Password Generator"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Background="Transparent"
-        AllowsTransparency="True"
         FontSize="16"
         ResizeMode="NoResize"
-        Height="450"
+        Height="380"
         Width="640">
 
 
@@ -27,9 +25,11 @@
 
         <Grid
             Grid.Row="0"
+            Background="#FF252525"
             MouseDown="StackPanel_MouseDown">
             <StackPanel
-                Orientation="Horizontal"            
+                Height="40"                
+                Orientation="Horizontal"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center">
                 <Button
@@ -90,12 +90,10 @@
                         Background="#666666">
                     </TextBox>
                     <Button
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
                         Width="110"
                         Height="40"
                         Margin="10 10 0 10"
-                        Background="#FF848181"
-                        BorderThickness="3"
-                        BorderBrush="#FF5D5B5B"
                         Foreground="white"
                         Click="GeneratePassword_Click">
                         <StackPanel Orientation="Horizontal">
@@ -114,13 +112,11 @@
                         </StackPanel>
                     </Button>
                     <Button
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
                         Width="170"
                         Height="40"
                         Margin="10 0 0 0"
-                        Background="#FF848181"
-                        BorderThickness="3"
                         FontSize="12"
-                        BorderBrush="#FF5D5B5B"
                         Foreground="white"
                         Click="CopyToClipboard_Click">
                         <StackPanel Orientation="Horizontal">
@@ -138,23 +134,10 @@
                                 Margin="0"/>
                         </StackPanel>
                     </Button>
-                </StackPanel>                
-                <StackPanel
-                    Orientation="Horizontal"
-                    Margin="20 20 20 10">
-                    <Slider
-                        Name="PasswordLengthSlider"
-                        Maximum="20"
-                        Minimum="5"
-                        TickFrequency="1"
-                        TickPlacement="BottomRight"
-                        IsSnapToTickEnabled="True"
-                        Width="600">
-                    </Slider>
                 </StackPanel>
                 <StackPanel
                     Orientation="Horizontal"
-                    Margin="20 0 20 0">
+                    Margin="20 10 20 0">
                     <Label
                         Margin="0 0 0 0"
                         Foreground="White"
@@ -169,6 +152,45 @@
                         Foreground="White"
                         FontSize="16"
                         Height="50"
+                        Width="40"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center">
+                    </Label>
+                    <Slider
+                        VerticalAlignment="Center"
+                        Margin="20 0 0 0"
+                        Name="PasswordLengthSlider"
+                        Maximum="30"
+                        Minimum="5"
+                        TickFrequency="1"
+                        TickPlacement="BottomRight"
+                        IsSnapToTickEnabled="True"
+                        Width="410">
+                    </Slider>
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Margin="20 0 20 10">
+                    <CheckBox
+                        x:Name="UppercaseCheckbox"
+                        Margin="0 0 0 0"
+                        Foreground="White"
+                        FontSize="16"
+                        Height="50"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center">
+                        <CheckBox.Resources>
+                            <!--Unchecked state-->
+                            <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#FF9A3838"/>
+                            <!--Checked state-->
+                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#FF67CE15"/>
+                        </CheckBox.Resources>
+                    </CheckBox>
+                    <Label
+                        Content="Include Uppercase characters (ABCDE...)"
+                        Foreground="White"
+                        FontSize="16"
+                        Height="50"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center">
                     </Label>
@@ -177,15 +199,49 @@
                     Orientation="Horizontal"
                     Margin="20 0 20 10">
                     <CheckBox
+                        x:Name="NumbersCheckbox"
                         Margin="0 0 0 0"
                         Foreground="White"
                         FontSize="16"
                         Height="50"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center">
+                        <CheckBox.Resources>
+                            <!--Unchecked state-->
+                            <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#FF9A3838"/>
+                            <!--Checked state-->
+                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#FF67CE15"/>
+                        </CheckBox.Resources>
                     </CheckBox>
                     <Label
-                        Content="Include Uppercase characters"
+                        Content="Include Numbers (12345...)"
+                        Foreground="White"
+                        FontSize="16"
+                        Height="50"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center">
+                    </Label>
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Margin="20 0 20 10">
+                    <CheckBox
+                        x:Name="SpecialCharsCheckbox"
+                        Margin="0 0 0 0"
+                        Foreground="White"
+                        FontSize="16"
+                        Height="50"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center">
+                        <CheckBox.Resources>
+                            <!--Unchecked state-->
+                            <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#FF9A3838"/>
+                            <!--Checked state-->
+                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#FF67CE15"/>
+                        </CheckBox.Resources>
+                    </CheckBox>
+                    <Label
+                        Content="Include special characters ($*#@%&amp;...)"
                         Foreground="White"
                         FontSize="16"
                         Height="50"

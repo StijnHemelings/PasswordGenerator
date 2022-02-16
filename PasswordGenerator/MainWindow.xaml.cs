@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PasswordGenerator
 {
@@ -25,7 +14,7 @@ namespace PasswordGenerator
             InitializeComponent();
         }
 
-        Random random = new Random();
+        Random random = new();
 
         //Button Minimize App
         private void MinimizeApp_Click(object sender, RoutedEventArgs e)
@@ -43,14 +32,32 @@ namespace PasswordGenerator
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                DragMove();
+                this.DragMove();
             }
         }
 
         private void GeneratePassword_Click(object sender, RoutedEventArgs e)
         {
-            string allCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789$*#@%&";
+            string allCharacters = "abcdefghijklmnopqrstuvwxyz";
+            string UpperCaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string Numbers = "123456789";
+            string SpecialCharacters = "$*#@%&!')+";
             string randomPassword = "";
+
+            if (UppercaseCheckbox.IsChecked == true)
+            {
+                allCharacters += UpperCaseCharacters;
+            }
+
+            if (NumbersCheckbox.IsChecked == true)
+            {
+                allCharacters += Numbers;
+            }
+
+            if (SpecialCharsCheckbox.IsChecked == true)
+            {
+                allCharacters += SpecialCharacters;
+            }
 
             for (int i = 0; i < PasswordLengthSlider.Value; i++)
             {
