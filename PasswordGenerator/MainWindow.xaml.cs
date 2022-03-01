@@ -40,9 +40,10 @@ namespace PasswordGenerator
         {
             string allCharacters = "abcdefghijklmnopqrstuvwxyz";
             string UpperCaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            string Numbers = "123456789";
-            string SpecialCharacters = "$*#@%&!')+";
+            string numbers = "123456789";
+            string specialCharacters = "$*#@%&!')+";
             string randomPassword = "";
+            string addStanley = "St@nl3y";
 
             if (UppercaseCheckbox.IsChecked == true)
             {
@@ -51,18 +52,23 @@ namespace PasswordGenerator
 
             if (NumbersCheckbox.IsChecked == true)
             {
-                allCharacters += Numbers;
+                allCharacters += numbers;
             }
 
             if (SpecialCharsCheckbox.IsChecked == true)
             {
-                allCharacters += SpecialCharacters;
+                allCharacters += specialCharacters;
             }
 
             for (int i = 0; i < PasswordLengthSlider.Value; i++)
             {
                 int randomNumber = random.Next(0, allCharacters.Length);
                 randomPassword += allCharacters[randomNumber];
+            }
+
+            if (AddStanley.IsChecked == true)
+            {
+                randomPassword = addStanley + randomPassword;
             }
 
             GeneratedPassword.Text = randomPassword;

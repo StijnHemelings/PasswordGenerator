@@ -27,6 +27,14 @@
             Grid.Row="0"
             Background="#FF252525"
             MouseDown="StackPanel_MouseDown">
+            <Label
+                FontWeight="Bold"
+                Foreground="White"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Center"
+                Margin="20 0 0 0"
+                Content="PASSWORD GENERATOR">
+            </Label>
             <StackPanel
                 Height="40"                
                 Orientation="Horizontal"
@@ -64,16 +72,12 @@
                 </Button>
             </StackPanel>
         </Grid>
+        
         <Grid
             Grid.Row="1">            
             <StackPanel
-                Orientation="Vertical">
-                <Label
-                FontWeight="Bold"
-                Foreground="White"
-                HorizontalContentAlignment="Center"
-                Content="PASSWORD GENERATOR">
-                </Label>
+                Orientation="Vertical"
+                Margin="0 20 0 0">                
                 <StackPanel
                     Orientation="Horizontal">
                     <TextBox
@@ -81,7 +85,7 @@
                         Padding="10 5 0 0"
                         Foreground="White"
                         FontSize="16"
-                        Width="300"
+                        Width="480"
                         Height="40"
                         Margin="20 10 0 10"
                         HorizontalAlignment="Left"
@@ -89,31 +93,10 @@
                         materialDesign:TextFieldAssist.UnderlineBrush="#89A306"
                         Background="#666666">
                     </TextBox>
-                    <Button
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="110"
-                        Height="40"
-                        Margin="10 10 0 10"
-                        Foreground="white"
-                        Click="GeneratePassword_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon
-                                Kind="Mace"
-                                Width="30"
-                                Height="30"
-                                VerticalAlignment="Center" 
-                                Margin="0"/>
-                            <Label
-                                Content="Create"
-                                FontSize="12"
-                                Foreground="White"
-                                VerticalAlignment="Center"
-                                Margin="0"/>
-                        </StackPanel>
-                    </Button>
+                    
                     <Button
                         Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                        Width="170"
+                        Width="100"
                         Height="40"
                         Margin="10 0 0 0"
                         FontSize="12"
@@ -127,7 +110,7 @@
                                 VerticalAlignment="Center" 
                                 Margin="0"/>
                             <Label
-                                Content="Copy to clipboard"
+                                Content="Copy"
                                 FontSize="12"
                                 Foreground="White"
                                 VerticalAlignment="Center"
@@ -136,23 +119,22 @@
                     </Button>
                 </StackPanel>
                 <StackPanel
-                    Orientation="Horizontal"
-                    Margin="20 10 20 0">
+                    Orientation="Horizontal">
                     <Label
-                        Margin="0 0 0 0"
                         Foreground="White"
                         FontSize="16"
                         Height="50"
+                        Margin="20 0 0 0"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
-                        Content="Password length:">
+                        Content="Length:">
                     </Label>
                     <Label
                         Content="{Binding ElementName=PasswordLengthSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"
                         Foreground="White"
                         FontSize="16"
                         Height="50"
-                        Width="40"
+                        Width="30"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center">
                     </Label>
@@ -160,23 +142,23 @@
                         VerticalAlignment="Center"
                         Margin="20 0 0 0"
                         Name="PasswordLengthSlider"
-                        Maximum="30"
+                        Maximum="35"
                         Minimum="5"
                         TickFrequency="1"
                         TickPlacement="BottomRight"
                         IsSnapToTickEnabled="True"
-                        Width="410">
+                        Width="480">
                     </Slider>
                 </StackPanel>
                 <StackPanel
                     Orientation="Horizontal"
-                    Margin="20 0 20 10">
+                    Margin="20 0 20 10"
+                    Height="50">
                     <CheckBox
                         x:Name="UppercaseCheckbox"
                         Margin="0 0 0 0"
                         Foreground="White"
                         FontSize="16"
-                        Height="50"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center">
                         <CheckBox.Resources>
@@ -187,23 +169,17 @@
                         </CheckBox.Resources>
                     </CheckBox>
                     <Label
-                        Content="Include Uppercase characters (ABCDE...)"
+                        Content="Uppercase characters (A...Z)"
                         Foreground="White"
                         FontSize="16"
-                        Height="50"
-                        HorizontalContentAlignment="Center"
+                        Width="320"
                         VerticalContentAlignment="Center">
                     </Label>
-                </StackPanel>
-                <StackPanel
-                    Orientation="Horizontal"
-                    Margin="20 0 20 10">
                     <CheckBox
                         x:Name="NumbersCheckbox"
                         Margin="0 0 0 0"
                         Foreground="White"
                         FontSize="16"
-                        Height="50"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center">
                         <CheckBox.Resources>
@@ -214,23 +190,22 @@
                         </CheckBox.Resources>
                     </CheckBox>
                     <Label
-                        Content="Include Numbers (12345...)"
+                        Content="Numbers (0...9)"
                         Foreground="White"
                         FontSize="16"
-                        Height="50"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center">
                     </Label>
                 </StackPanel>
                 <StackPanel
                     Orientation="Horizontal"
+                    Height="50"
                     Margin="20 0 20 10">
                     <CheckBox
                         x:Name="SpecialCharsCheckbox"
                         Margin="0 0 0 0"
                         Foreground="White"
                         FontSize="16"
-                        Height="50"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center">
                         <CheckBox.Resources>
@@ -241,13 +216,56 @@
                         </CheckBox.Resources>
                     </CheckBox>
                     <Label
-                        Content="Include special characters ($*#@%&amp;...)"
+                        Content="Special characters"
                         Foreground="White"
                         FontSize="16"
-                        Height="50"
-                        HorizontalContentAlignment="Center"
+                        Width="320"
                         VerticalContentAlignment="Center">
                     </Label>
+                    <CheckBox
+                        x:Name="AddStanley"
+                        Margin="0 0 0 0"
+                        Foreground="White"
+                        FontSize="16"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center">
+                        <CheckBox.Resources>
+                            <!--Unchecked state-->
+                            <SolidColorBrush x:Key="MaterialDesignCheckBoxOff" Color="#FF9A3838"/>
+                            <!--Checked state-->
+                            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#FF67CE15"/>
+                        </CheckBox.Resources>
+                    </CheckBox>
+                    <Label
+                        Content="Add St@nl3y before password"
+                        Foreground="White"
+                        FontSize="16"
+                        VerticalContentAlignment="Center">
+                    </Label>
+                </StackPanel>
+                <StackPanel
+                    Orientation="Horizontal">
+                    <Button
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        Width="590"
+                        Height="50"
+                        Margin="20 10 20 20"
+                        Foreground="white"
+                        Click="GeneratePassword_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Kind="Refresh"
+                                Width="40"
+                                Height="40"
+                                VerticalAlignment="Center" 
+                                Margin="0"/>
+                            <Label
+                                Content="Generate Password"
+                                FontSize="24"
+                                Foreground="White"
+                                VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
             </StackPanel>
         </Grid>
